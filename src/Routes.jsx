@@ -6,7 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router";
 const useRoutes = () => {
   return (
     <div>
-      <BrowserRouter>
+      <BrowserRouter basename="/WeatherApp/">
         <Routes>
           <Route path="/" exact={true} element={<Home />} />
           <Route path="/Pages/WeatherPage" element={<WeatherPage />} />

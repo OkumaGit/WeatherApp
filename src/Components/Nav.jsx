@@ -8,7 +8,11 @@ export const Nav = () => {
         <Link to="/" className="button-link">
           <button>Home</button>
         </Link>
-        <Link to="/Pages/WeatherPage" className="button-link">
+        <Link
+          style={{ display: "none" }}
+          to="/Pages/WeatherPage"
+          className="button-link"
+        >
           <button>Test</button>
         </Link>
       </nav>

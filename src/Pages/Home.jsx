@@ -1,56 +1,24 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Header from "../Components/Header";
 import { Nav } from "../Components/Nav";
 import Weather from "../Components/Weather";
-import axios from "axios";
 import { ModalWindow } from "../Components/ModalWindow/ModalWindow";
 import LocationComponent from "../Components/LocationComponent";
+import { fetchCity } from "../Components/FetchCity";
 
 export const Home = () => {
   const [props, setProps] = useState({});
   const [show, setShow] = useState(false);
+  const [inputValue, setInputValue] = useState("");
 
-  // .get langitude && latitude
+  // .get langitude && latitude. fetchCity() function
   useEffect(() => {
-    const fetchCity = async () => {
-      const response = await axios.get(
-        "https://geocoding-api.open-meteo.com/v1/search",
-        {
-          params: {
-            name: props.name ? props.name : "", // Pass city directly
-            count: 5,
-            language: "en",
-            format: "json",
-          },
-        }
-      );
-
-      if (!response.data.results?.[0]) return;
-      try {
-        setProps({
-          ...props,
-          latitude: response.data.results[0].latitude,
-          longitude: response.data.results[0].longitude,
-          timezone: response.data.results[0].timezone,
-        });
-      } catch (error) {
-        console.log("City not found!", error);
-      }
-
-      console.log("props in Home.jsx", props.timezone);
-    };
-
-    fetchCity();
+    setInputValue(props.name ? props.name : ""); // Set input value from props
+    fetchCity(props, setProps);
   }, [props.name]);
 
-  // GETTING INPUT VALUE - CITY
-
-  function updateInputValue(event) {
-    setProps({ ...props, name: document.getElementById("cityInput").value });
-  }
-
   // CLEARING INPUT VALUE
-  const resetInput = (event) => {
+  const resetInput = () => {
     if (document.getElementById("cityInput").value.length > 0) {
       (document.getElementById("cityInput").value = ""), setProps({});
     } else null;
@@ -76,17 +44,26 @@ export const Home = () => {
           className="border col-sm-4"
         >
           <Weather props={props} />
+          {/* Input field */}
           <input
-            onChange={(event) =>
-              setProps({ ...props, name: event.target.value })
+            onChange={
+              // (event) => setProps({ ...props, name: event.target.value })
+              (event) => setInputValue(event.target.value)
             }
-            defaultValue=""
+            // value={inputValue ? inputValue.target.value : ""}
+            value={inputValue ? inputValue : ""}
             id="cityInput"
             placeholder="Enter a city"
             autoComplete="off"
           />
+          {/* Submit button */}
           <input
-            onClick={(event) => updateInputValue(event)}
+            onClick={() =>
+              setProps({
+                ...props,
+                name: document.getElementById("cityInput").value,
+              })
+            }
             type="button"
             value="Submit"
           />
@@ -101,8 +78,13 @@ export const Home = () => {
             value="Pick from a list"
           />
           <LocationComponent
-            props={({ latitude, longitude, name }) => {
-              setProps((prev) => ({ ...prev, latitude, longitude, name }));
+            props={({ latitude, longitude, name, event }) => {
+              setProps((prev) => ({
+                ...prev,
+                latitude,
+                longitude,
+                name: name ? name : "No city found",
+              }));
             }}
           />
         </div>

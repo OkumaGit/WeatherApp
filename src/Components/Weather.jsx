@@ -15,6 +15,7 @@ const Weather = ({ props }) => {
           params: {
             latitude: props.latitude,
             longitude: props.longitude,
+            daily: "temperature_2m_max,temperature_2m_min",
             hourly: "wind_speed_10m,temperature_2m",
             time: "2024-12-22T00:00",
             timezone: "auto",
@@ -28,7 +29,6 @@ const Weather = ({ props }) => {
       setLoading(false);
     };
     // console.log("props in Weather.jsx is:", props);
-
     fetchWeather();
   }, [props.name, props.latitude, props.longitude]);
 
@@ -46,6 +46,8 @@ const Weather = ({ props }) => {
     ? weatherData.hourly.temperature_2m[0]
     : null;
 
+  const currentTemperatureForecast = weatherData ? weatherData : null;
+
   const currentWind = weatherData ? weatherData.hourly.wind_speed_10m[0] : null;
 
   return (
@@ -55,11 +57,40 @@ const Weather = ({ props }) => {
       {weatherData != undefined ? (
         <p>
           <br />
-          {weatherData ? `Time & timezone: ${currentTime}` : null}
+          <span>Now: </span>
           <br />
-          {weatherData ? `Temperature: ${currentTemperature}°C` : null}
+          {weatherData ? (
+            <span
+              style={{ color: "blue", fontWeight: "bold", fontSize: "20px" }}
+            >
+              {currentTemperature}°C
+            </span>
+          ) : null}
           <br />
+          {weatherData ? `Local time: ${currentTime}` : null}
+          <br />
+
           {weatherData ? `Wind speed: ${currentWind}km/h` : null}
+          <br />
+          <br />
+          <span>Tomorrow:</span>
+          <br />
+          <span style={{ fontWeight: "bold" }}>
+            {weatherData
+              ? `${currentTemperatureForecast.daily.temperature_2m_max[1]}°C `
+              : null}
+          </span>
+          <span>
+            {weatherData
+              ? `/ ${currentTemperatureForecast.daily.temperature_2m_min[1]}°C`
+              : null}
+          </span>
+          {/* <br />
+          {`Let's understand the weather data: ${JSON.stringify(
+            currentTemperatureForecast.daily
+          )}`} */}
+          {/* {weatherData ? `Data: ${weatherData}` : null} */}
+          {weatherData ? console.log(weatherData) : null}
         </p>
       ) : null}
     </div>

@@ -13,10 +13,8 @@
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "^4.5.1",
     "axios": "^1.7.9",
     "bootstrap": "^5.3.3",
-    "gh-pages": "^6.3.0",
     "nano-react-app": "^0.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -24,7 +22,9 @@
     "sass": "^1.89.0"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^4.5.1",
     "babel-preset-nano-react-app": "^0.1.0",
+    "gh-pages": "^6.3.0",
     "vite": "^6.3.5"
   },
   "babel": {
