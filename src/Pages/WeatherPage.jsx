@@ -11,7 +11,7 @@ const props = {
 
 export const WeatherPage = () => {
   return (
-    <div className="row table-bordered">
+    <div className="container-md row table-bordered">
       <Nav />
       <div className="border col-sm-4">
         {/* <Weather props={props} /> */}

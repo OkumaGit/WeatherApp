@@ -36,7 +36,7 @@ export const Home = () => {
           <ModalWindow props={citySelected} />
         </>
       )}
-      <div className="row table-bordered">
+      <div className="container row table-bordered">
         <Nav />
         <Header props="Weather, time and wind speed in any city" />
         <div

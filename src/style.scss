@@ -127,10 +127,30 @@ button:active {
   .container {
     max-width: 540px;
   }
+  input,
+  input[type="text"],
+  input[type="button"] {
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
 }
 @media (min-width: 768px) {
   .container-md,
   .container-sm,
+  input,
+  input[type="text"],
+  input[type="button"] {
+    font-size: 18px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
   .container {
     max-width: 720px;
   }

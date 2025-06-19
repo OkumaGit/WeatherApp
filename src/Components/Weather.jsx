@@ -51,18 +51,21 @@ const Weather = ({ props }) => {
   const currentWind = weatherData ? weatherData.hourly.wind_speed_10m[0] : null;
 
   return (
-    <div style={{ paddingBottom: "20px", paddingTop: "20px" }}>
+    <div style={{ paddingBottom: "20px", paddingTop: "10px" }}>
       {/* Revealing the weather data */}
-      <h1>{props.name ? `${props.name}` : "Choose a city"}</h1>
+      <p style={{ paddingBottom: "10px" }}>
+        {props.name ? (
+          <>
+            Results for <b>{props.name}</b>
+          </>
+        ) : (
+          "Choose a city"
+        )}
+      </p>
       {weatherData != undefined ? (
         <p>
-          <br />
-          <span>Now: </span>
-          <br />
           {weatherData ? (
-            <span
-              style={{ color: "blue", fontWeight: "bold", fontSize: "20px" }}
-            >
+            <span style={{ fontWeight: "bold", fontSize: "28px" }}>
               {currentTemperature}°C
             </span>
           ) : null}
@@ -89,7 +92,6 @@ const Weather = ({ props }) => {
           {`Let's understand the weather data: ${JSON.stringify(
             currentTemperatureForecast.daily
           )}`} */}
-          {/* {weatherData ? `Data: ${weatherData}` : null} */}
           {weatherData ? console.log(weatherData) : null}
         </p>
       ) : null}
