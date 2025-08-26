@@ -1,4 +1,3 @@
-import React from "react";
 import UseRoutes from "./Routes";
 
 function App() {

@@ -1,33 +1,64 @@
-import React, { useState } from "react";
 import closeIcon from "./src/close.png";
 
 export const ModalWindow = ({ props }) => {
+  console.log("props in ModalWindow:", props);
+
   return (
     <div className="bgOverlay">
       <div className="modalWindow">
         {/* <button className="closeButton" onClick={() => setShow(false)}> */}
         <div className="closeButton">
-          <img onClick={props} src={closeIcon} als="close"></img>
+          {/* Close */}
+          <img onClick={props} src={closeIcon} alt="close"></img>
         </div>
-
         <ul className="citiesList">
           <li>
-            <input onClick={props} type="button" value="Essen" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="Essen"
+            />
           </li>
           <li>
-            <input onClick={props} type="button" value="Berlin" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="Berlin"
+            />
           </li>
           <li>
-            <input onClick={props} type="button" value="Hannover" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="Hannover"
+            />
           </li>
           <li>
-            <input onClick={props} type="button" value="Kyiv" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="Kyiv"
+            />
           </li>
           <li>
-            <input onClick={props} type="button" value="Amsterdam" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="Amsterdam"
+            />
           </li>
           <li>
-            <input onClick={props} type="button" value="New York" />
+            <input
+              className="button"
+              onClick={props}
+              type="button"
+              value="New York"
+            />
           </li>
         </ul>
       </div>

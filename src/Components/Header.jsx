@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = ({ props }) => {
   return (
-    <header className="container">
+    <header>
       <h1 style={{ paddingBottom: "20px", paddingTop: "20px" }}>{props}</h1>
     </header>
   );

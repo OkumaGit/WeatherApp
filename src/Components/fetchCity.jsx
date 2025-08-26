@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import axios from "axios";
 
 export const fetchCity = (props, setProps) => {
@@ -26,7 +25,6 @@ export const fetchCity = (props, setProps) => {
     } catch (error) {
       console.log("City not found!", error);
     }
-    // console.log("props in Home.jsx", props.timezone);
   };
 
   fetchCity();

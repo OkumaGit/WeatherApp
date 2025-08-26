@@ -34,7 +34,6 @@ The Babel preset [babel-preset-nano-react-app](https://github.com/nano-react-app
 
 The Babel configuration lives inside `package.json` and will override an external `.babelrc` file, so if you want to use `.babelrc` remember to delete the `babel` property inside `package.json`.
 
-
 ## Deploy to GitHub Pages
 
 You can also deploy your project using GitHub pages.
@@ -54,3 +53,11 @@ Use the following scripts for deployment:
 ```
 
 Then follow the normal procedure in GitHub Pages and select the `gh-pages` branch.
+
+## Licenses
+
+Material Icons by Google are used under the Apache License 2.0.
+Source: https://fonts.google.com/icons
+
+Weather Data Source
+This application uses free weather data provided by [Open-Meteo](https://open-meteo.com).

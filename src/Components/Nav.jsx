@@ -6,7 +6,7 @@ export const Nav = () => {
     <div style={{ padding: "10px" }}>
       <nav>
         <Link to="/" className="button-link">
-          <button>Home</button>
+          <button className="button">Home</button>
         </Link>
         <Link
           style={{ display: "none" }}

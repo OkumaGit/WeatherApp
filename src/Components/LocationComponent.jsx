@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { icons } from "./icons";
 
-const LocationComponent = ({ props }) => {
+const LocationComponent = ({ onCoordinatesChange }) => {
   // Function to get the user's current location
   const getLocation = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         async (position) => {
-          if (!props) return console.log("No coordinates provided");
+          if (!onCoordinatesChange)
+            return console.log("No coordinates provided");
           try {
             // BigDataCloud API (Free, CORS-friendly)
             const response = await axios.get(
@@ -23,15 +24,17 @@ const LocationComponent = ({ props }) => {
             const city =
               response.data &&
               (response.data.city ? response.data.city : "No city found");
-            console.log("response", response);
+            console.log("response in LC:", response);
 
-            props({
-              ...props,
-              name: city ? city : "No city found",
+            console.log("city from LocationComponent's API:", city);
+
+            onCoordinatesChange({
               latitude: position.coords.latitude,
               longitude: position.coords.longitude,
+              name: city ? city : "No city found",
             });
-            console.log("Props we have after getLocation", props);
+
+            console.log("Props we have after getLocation", onCoordinatesChange);
           } catch (error) {
             console.error("Error fetching location data:", error);
           }
@@ -44,7 +47,17 @@ const LocationComponent = ({ props }) => {
       console.error("Geolocation is not supported.");
     }
   };
-  return <input type="button" value="Use my location" onClick={getLocation} />;
+  return (
+    <button
+      className="button"
+      onClick={getLocation}
+      value="Use my location"
+      style={{ display: "flex", alignItems: "center" }}
+    >
+      {icons.navigation}
+      Use my location
+    </button>
+  );
 };
 
 export default LocationComponent;
